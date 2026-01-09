@@ -327,9 +327,6 @@ This is an assignment implementation. For improvements:
 3. Try different LLM models
 4. Optimize embedding models
 
-## 📄 License
-
-This implementation is for educational purposes as part of the Kalpit Pvt Ltd AI Engineering Intern assignment.
 
 ## 🎯 Assignment Completion Checklist
 
