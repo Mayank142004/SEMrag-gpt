@@ -1,0 +1,51 @@
+# SEMRAG Configuration File
+# Hyperparameters for the SEMRAG pipeline
+
+# Semantic Chunking Parameters
+chunking:
+  buffer_size: 5  # Number of sentences to merge for context (b in paper)
+  cosine_threshold: 0.5  # θ - semantic coherence threshold
+  max_chunk_tokens: 1024  # Maximum chunk size in tokens
+  overlap_tokens: 128  # Overlap size for sub-chunks
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+
+# Knowledge Graph Parameters
+knowledge_graph:
+  ner_model: "en_core_web_sm"  # spaCy NER model
+  community_algorithm: "leiden"  # leiden or louvain
+  min_community_size: 3
+  resolution: 1.0  # For community detection
+
+# Retrieval Parameters
+retrieval:
+  # Local Graph RAG
+  local:
+    tau_e: 0.6  # τe - entity similarity threshold
+    tau_d: 0.5  # τd - chunk-entity distance threshold
+    top_k: 5
+  
+  # Global Graph RAG
+  global:
+    top_k_communities: 3
+    top_k_points: 10
+  
+  # General
+  context_window: 4096  # Maximum context for LLM
+
+# LLM Parameters
+llm:
+  model_name: "llama3:8b"  # Ollama model
+  temperature: 0.1
+  max_tokens: 1000
+  base_url: "http://localhost:11434"
+
+# Storage Parameters
+storage:
+  vector_db: "chromadb"
+  persist_directory: "./data/processed/vector_db"
+  collection_name: "ambedkar_chunks"
+
+# Processing Parameters
+processing:
+  batch_size: 32
+  num_workers: 4
